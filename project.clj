@@ -16,11 +16,11 @@
 
   :min-lein-version "2.5.0"
 
-  :clean-targets ^{:protect false} ["resources/public/js"]
+  :clean-targets ^{:protect false} ["extension/js/compiled"]
 
   :cljsbuild {:builds {:app {:source-paths ["src/cljs"]
-                             :compiler {:output-to     "extension/js/app.js"
-                                        :output-dir    "extension/js/out"
+                             :compiler {:output-to     "extension/js/compiled/app.js"
+                                        :output-dir    "extension/js/compiled/deps"
                                         ;;:externs       ["react/externs/react.js"]
                                         :asset-path   "js/out"
                                         :optimizations :none
@@ -41,13 +41,11 @@
                    :env {:dev? true}
 
                    :cljsbuild {:builds {:app {:source-paths ["env/dev/cljs"]
-                                              :compiler {   :main "whack-a-proxy.dev"
-                                                         :source-map true}}
+                                              :compiler {:source-map true}}
                                         :test {:source-paths ["src/cljs"  "test/cljs"]
                                                :compiler {:output-to "target/test.js"
                                                           :optimizations :whitespace
-                                                          :pretty-print true
-                                                          :preamble ["react/react.js"]}}}
+                                                          :pretty-print true}}}
                                :test-commands {"unit" ["phantomjs" :runner
                                                        "test/vendor/es5-shim.js"
                                                        "test/vendor/es5-sham.js"
@@ -59,7 +57,6 @@
                                       :builds {:app
                                                {:source-paths ["env/prod/cljs"]
                                                 :compiler
-                                                {:main "whack-a-proxy.prod"
-                                                 :optimizations :advanced
+                                                {:optimizations :advanced
                                                  :pretty-print false}}}}}
              })

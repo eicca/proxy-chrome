@@ -1,7 +1,7 @@
-(ns whack-a-proxy.core-test
+(ns whack-a-proxy.popup-test
   (:require [cemerick.cljs.test :refer-macros [is are deftest testing use-fixtures done]]
             [reagent.core :as reagent :refer [atom]]
-            [whack-a-proxy.core :as rc]))
+            [whack-a-proxy.popup :as popup]))
 
 
 (def isClient (not (nil? (try (.-document js/window)
@@ -34,6 +34,6 @@
 
 
 (deftest test-home
-  (with-mounted-component (rc/home-page)
+  (with-mounted-component (popup/main-view)
     (fn [c div]
-      (is (found-in #"Welcome to" div)))))
+      (is (found-in #"whack-a-proxy" div)))))

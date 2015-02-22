@@ -1,0 +1,10 @@
+body {
+  width: 300px;
+  min-height: 100px;
+  margin: 0;
+  padding: 0 0 15px 0;
+  background: #ffffff;
+  overflow: hidden;
+  color: #434a54;
+  font-size: 14px;
+}
