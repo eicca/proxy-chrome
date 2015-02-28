@@ -35,7 +35,7 @@
 ;; -------------------------
 ;; Views
 
-(defn- main-view
+(defn main-view
   []
   [:div
    [:h2 "whack-a-proxy"]

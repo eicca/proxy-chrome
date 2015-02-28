@@ -33,7 +33,8 @@
           false))))
 
 
-(deftest test-home
+(deftest test-popup
   (with-mounted-component (popup/main-view)
     (fn [c div]
-      (is (found-in #"whack-a-proxy" div)))))
+      (is (found-in #"whack-a-proxy" div))
+      (is (found-in #"disconnected" div)))))
