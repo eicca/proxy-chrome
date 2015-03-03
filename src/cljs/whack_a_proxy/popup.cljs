@@ -1,36 +1,8 @@
 (ns whack-a-proxy.popup
-    (:require [reagent.core :as reagent :refer [atom]]
-              [cljsjs.react :as react]))
+  (:require [reagent.core :as reagent :refer [atom]]
+            [whack-a-proxy.proxy :as proxy]))
 
-(def ^:private states [:disconnected :connecting :connected])
-
-(def current-state (atom :disconnected))
-
-(defn- on-after-connect
-  []
-  (when-not (= @current-state :disconnected)
-    (reset! current-state :connected)))
-
-(defn- connect!
-  []
-  (reset! current-state :connecting)
-  (js/setTimeout on-after-connect 2000))
-
-(defn- disconnect!
-  []
-  (reset! current-state :disconnected))
-
-(defn- toggle-proxy
-  []
-  (case @current-state
-    :disconnected (connect!)
-    (:connecting :connected) (disconnect!)))
-
-(defn- toggle-button-text
-  []
-  (case @current-state
-    :disconnected "Connect to proxy"
-    "Disconnect"))
+(enable-console-print!)
 
 ;; -------------------------
 ;; Views
@@ -39,8 +11,8 @@
   []
   [:div
    [:h2 "whack-a-proxy"]
-   [:h4 "Status: " [:span (clj->js @current-state)]]
-   [:button {:on-click toggle-proxy} (toggle-button-text)]])
+   [:h4 "Status: " [:span (clj->js @proxy/current-state)]]
+   [:button {:on-click proxy/toggle-proxy} (proxy/toggle-button-text)]])
 
 ;; -------------------------
 ;; Initialize popup
