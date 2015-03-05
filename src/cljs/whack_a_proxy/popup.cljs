@@ -18,4 +18,6 @@
 ;; Initialize popup
 (defn ^:export run
   []
-  (reagent/render [main-view] (.getElementById js/document "app")))
+  (proxy/init
+   (fn []
+     (reagent/render [main-view] (.getElementById js/document "app")))))

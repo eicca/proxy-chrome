@@ -8,7 +8,8 @@
 
   "permissions": [
     "http://localhost/",
-    "storage"
+    "storage",
+    "proxy"
     ],
 
   "browser_action": {
